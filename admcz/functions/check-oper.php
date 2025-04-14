@@ -1,0 +1,15 @@
+<?php
+function checkOper()
+{
+    if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] != 3) {
+        // muda o valor de logged_in para false
+        $_SESSION['logged_in'] = false;
+
+        // finaliza a sessão
+        session_destroy();
+
+        // redireciona para a página de login
+        header("Location: ../login/index.php?flag=erro&tip=Você não possui privilégios de Operacional para acessar a página!"); // Redireciona para a página de login se não for administrador
+        exit;
+    }
+}
